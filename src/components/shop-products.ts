@@ -12,20 +12,20 @@ import { LitElement, html, css, property } from 'lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 
 // This element is connected to the Redux store.
-import { store, RootState } from '../store.js';
+import { store, RootState } from '../store';
 
 // These are the elements needed by this element.
-import './shop-item.js';
+import './shop-item';
 
 // These are the actions needed by this element.
-import { getAllProducts, addToCart } from '../actions/shop.js';
+import { getAllProducts, addToCart } from '../actions/shop';
 
 // These are the elements needed by this element.
-import { addToCartIcon } from './my-icons.js';
+import { addToCartIcon } from './my-icons';
 
 // These are the shared styles needed by this element.
-import { ButtonSharedStyles } from './button-shared-styles.js';
-import { ProductsState } from '../reducers/shop.js';
+import { ButtonSharedStyles } from './button-shared-styles';
+import { ProductsState } from '../reducers/shop';
 
 class ShopProducts extends connect(store)(LitElement) {
   @property({type: Object})

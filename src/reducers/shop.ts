@@ -16,9 +16,9 @@ import {
   CHECKOUT_SUCCESS,
   CHECKOUT_FAILURE,
   ShopAction
-} from '../actions/shop.js';
+} from '../actions/shop';
 import { createSelector } from 'reselect';
-import { RootState, RootAction } from '../store.js';
+import { RootState, RootAction } from '../store';
 
 export interface ShopState {
   products: ProductsState;
@@ -26,7 +26,7 @@ export interface ShopState {
   error: string;
 }
 export interface ProductsState {
-  [index:string]: ProductState;
+  [index: string]: ProductState;
 }
 export interface ProductState {
   id: number;
@@ -35,7 +35,7 @@ export interface ProductState {
   inventory: number;
 }
 export interface CartState {
-  [index:string]: number;
+  [index: string]: number;
 }
 export interface CartItem {
   id: number;
@@ -161,7 +161,7 @@ export const cartItemsSelector = createSelector(
   (cart, products) => {
     return Object.keys(cart).map(id => {
       const item = products[id];
-      return {id: item.id, title: item.title, amount: cart[id], price: item.price};
+      return { id: item.id, title: item.title, amount: cart[id], price: item.price };
     });
   }
 );
