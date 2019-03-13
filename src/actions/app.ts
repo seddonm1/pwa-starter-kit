@@ -17,11 +17,11 @@ export const UPDATE_DRAWER_STATE = 'UPDATE_DRAWER_STATE';
 export const OPEN_SNACKBAR = 'OPEN_SNACKBAR';
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 
-export interface AppActionUpdatePage extends Action<'UPDATE_PAGE'> {page: string};
-export interface AppActionUpdateOffline extends Action<'UPDATE_OFFLINE'> {offline: boolean};
-export interface AppActionUpdateDrawerState extends Action<'UPDATE_DRAWER_STATE'> {opened: boolean};
-export interface AppActionOpenSnackbar extends Action<'OPEN_SNACKBAR'> {};
-export interface AppActionCloseSnackbar extends Action<'CLOSE_SNACKBAR'> {};
+export interface AppActionUpdatePage extends Action<'UPDATE_PAGE'> { page: string };
+export interface AppActionUpdateOffline extends Action<'UPDATE_OFFLINE'> { offline: boolean };
+export interface AppActionUpdateDrawerState extends Action<'UPDATE_DRAWER_STATE'> { opened: boolean };
+export interface AppActionOpenSnackbar extends Action<'OPEN_SNACKBAR'> { };
+export interface AppActionCloseSnackbar extends Action<'CLOSE_SNACKBAR'> { };
 export type AppAction = AppActionUpdatePage | AppActionUpdateOffline | AppActionUpdateDrawerState | AppActionOpenSnackbar | AppActionCloseSnackbar;
 
 type ThunkResult = ThunkAction<void, RootState, undefined, AppAction>;
@@ -39,22 +39,22 @@ export const navigate: ActionCreator<ThunkResult> = (path: string) => (dispatch)
 };
 
 const loadPage: ActionCreator<ThunkResult> = (page: string) => (dispatch) => {
-  switch(page) {
+  switch (page) {
     case 'view1':
-      import('../components/my-view1.js').then((_module) => {
+      import(/* webpackChunkName: "my-view1" */ '../components/my-view1').then((_module) => {
         // Put code in here that you want to run every time when
         // navigating to view1 after my-view1.js is loaded.
       });
       break;
     case 'view2':
-      import('../components/my-view2.js');
+      import(/* webpackChunkName: "my-view2" */ '../components/my-view2');
       break;
     case 'view3':
-      import('../components/my-view3.js');
+      import(/* webpackChunkName: "my-view3" */ '../components/my-view3');
       break;
     default:
       page = 'view404';
-      import('../components/my-view404.js');
+      import(/* webpackChunkName: "my-view404" */ '../components/my-view404');
   }
 
   dispatch(updatePage(page));
